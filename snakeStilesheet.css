@@ -7,41 +7,73 @@
 	max-width: 1000px;
 	height: auto;
 	background: black;
-	
-	padding: 5px;
-	
-	
+	padding: 0px;
+	margin: 0 auto;
+	/*con esto centro el objeto seleccionado*/
 }
 
-img .snakeLogo {
-	height: 50%;
+/*img .snakeLogo {
+	height: 500px;
+	width: auto;
+}*/
+
+nav{
+	width: 100%;
+	height: 100px;
+	background: grey;
+
 }
 
+nav div{
+	color: #fff;
+	font-family: Arial;
+	font-size: 1em;
+	text-align: center;
+	padding: 0px 10px 0px 10px;
+	margin: auto 0;
+	box-sizing:border-box;
+	float: left;
+	background: blue;
+	/*border: 10px solid #000*/
+
+}
+
+nav div :hover {
+	color: #bdbdbd;
+	
+}
 .main {
 	width: 70%;
-	background: yellow;
-	padding: 20px;
+	background: orange;
+	padding: 5px;
 	box-sizing:border-box;
-	background: #fff;
 	float: left;
+	margin: 0 auto;
 
 }
 
-.cajaPadre{
-	height: 50px;
+canvas {
+	clear: both;
+	height: 100%; 
+	width: 100%;
+	padding: 5px;
+	display: block;
+	box-sizing:border-box;
+	
 }
 
 aside {
+	
+	font-family: arial;
 	width: 30%;
 	padding: 20px;
 	box-sizing:border-box; 
 	/*es la propiedad que permite que el padding no se suma el tamaño total del contenedor*/
-	background: #ccc;
+	background: lime;
 	float: left;
 }
 
 footer {
-
 	width: 100%;
 	padding: 20px;
 	box-sizing:border-box;
@@ -49,60 +81,55 @@ footer {
 	float: left;
 }
 
-div  {
-	width: auto;
-	height: 50px;
-	background: black;
-	color: #fff;
-	font-family: Arial;
-	font-size: 10px;
-	text-align: center;
-	padding: 5px;
-	margin: 0px;
-	float: left;
-}
-div:hover {
-	color: #bdbdbd;
-}
-
-
-/*
-canvas {
-	clear: both;
-	height: 500px; 
-	width: 80%;
-	padding: 5px;
-	display: block;
-	box-sizing:border-box;
-	
-}
-.clear {
-	 
-	Con esto le obligamos al párrafo a no rodear la imagen 
-}
-*/
-
 @media screen and (max-width: 800px) {
-	/*Esto nos permite que cuando el ancho de pantalla sea 
-	menor que 800px (Tablet)se ejecute el siguente estilo*/
+	/*Esto nos permite que cuando el ancho de pantalla sea menor que 800px (Tablet)se ejecute el siguente estilo*/
+	
 	.main{
 		width: 100%;
+		box-sizing:border-box;
+		padding: 5px;
 	}
 	aside{
 		width: 100%;
 	}
 }
 
-@media screen and (max-width: 400px) {
-	/*Esto nos permite que cuando el ancho de pantalla sea 
-	menor que 400px (smarphone)se ejecute el siguente estilo*/
+@media screen and (max-width: 437px) {
+	/*Esto nos permite que cuando el ancho de pantalla sea menor que 400px (smarphone)se ejecute el siguente estilo*/
 	.contenedor{
 		width: 100%;
+		min-width: 300px;
+
 	}
-	/*aside{
-		display: none; 	
-		Esto permite no mostrar el aside cuando el ancho de pantalla
-		es menor a 400px
-	}*/
+	aside{
+		display: none; 
+		/*background: aqua;*/	
+		/*Esto permite no mostrar el aside cuando el ancho de pantalla es menor a 400px*/
+	}
+	nav div .cajaStart , nav div .cajaPause{
+		display: none; 
+	}
+}
+
+/*
+.cajaPadre{
+	height: 50px;
+	width: 100%;
+	background: orange;
+	
 	
 }
+
+display: inline-block;
+	
+
+
+.clear {
+	 
+	Con esto le obligamos al párrafo a no rodear la imagen 
+}
+
+
+
+
+*/
