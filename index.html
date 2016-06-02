@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>Snake</title>
+	<link rel="shotcut icon" type="image/x-icon" href="images/snakeIcon48.ico">
+	<script type="text/javascript" src="snake.js"></script> 
+	
+	<link rel="stylesheet" type="text/css" href="snakeStilesheet.css">
+
+</head>
+<body>
+	<header><!--es donde vamos a incluir todo el contenido del encabezado. Por lo general es un logotipo y un menú-->
+		<nav><!--es donde incluimos el menú de navegación. Este se compone de 				listas-->
+			<div class="cajaPadre">
+				<div class="cajaLogo">
+					<img src="images\snakeIcon48negative.ico" width="100" alt="Snake Logo">
+				</div>
+				<div class="cajaStart"><h2>Start</h2></div>
+				<div class="cajaPause"><h2>Pause</h2></div>
+				<div class="cajaScore"><h2>Score: 00000</h2></div>
+				<div class="cajaLifes"><h2>Life: S S S </h2></div>
+			</div>
+		</nav>
+	</header><br/>
+
+
+
+
+
+	<section class="wrapper"><!--encierra todo el contenido o "warapper" que se conoce como contenedor o contenido  -->
+		<canvas id="canvas"></canvas>
+		<h1>Snake</h1>
+		
+			<section class="main"><!—esta clase nos identifica que este es el contenido principal o los artículos-->
+			<p>Mueve la serpiente con las flechas del teclado.haz que coma los ratones que van apareciendo.Evita que toque los bordes de la pantalla.Y evita que se coma a si misma.</p>
+		<p>Suerte.</p>
+		
+		<p>
+		Para comenzar preciona una flecha del teclado.
+		<h2>PUNTOS</h2>
+		<h2 id="puntos">0000</h2>
+		
+		<input type="button" id="botonPause" value="PAUSE" />
+	</p>
+	
+	<script type="text/javascript">
+		start();
+	</script>
+
+	<footer>
+		<p> por Juan Manuel Bianchetti - 2016 </p>
+	</footer>
+	
+</body>
+</html>
