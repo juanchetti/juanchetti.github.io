@@ -5,9 +5,9 @@ var velocidad = 500;
 // Properties __________________________________________________
 
 var xMin = 0;
-var xMax = 500;
+var xMax = 300;
 var yMin = 0;
-var yMax = 500;
+var yMax = 300;
 // var speed = 10; 
 var curva = new Array();
 // var cambioDireccion = false;

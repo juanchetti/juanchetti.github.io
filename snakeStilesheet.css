@@ -2,16 +2,52 @@
 /*This is de Stylesheet of Snake Game by Juan Manuel Bianchetti 2016.*/
 
 
-.cajaPadre {
-	width: 500px;
-	height: 110px;
+.contenedor {
+	width: 80%;
+	max-width: 1000px;
+	height: auto;
 	background: black;
 	
 	padding: 5px;
-	margin: 0px;
+	
 	
 }
 
+img .snakeLogo {
+	height: 50%;
+}
+
+.main {
+	width: 70%;
+	background: yellow;
+	padding: 20px;
+	box-sizing:border-box;
+	background: #fff;
+	float: left;
+
+}
+
+.cajaPadre{
+	height: 50px;
+}
+
+aside {
+	width: 30%;
+	padding: 20px;
+	box-sizing:border-box; 
+	/*es la propiedad que permite que el padding no se suma el tamaño total del contenedor*/
+	background: #ccc;
+	float: left;
+}
+
+footer {
+
+	width: 100%;
+	padding: 20px;
+	box-sizing:border-box;
+	background: red;
+	float: left;
+}
 
 div  {
 	width: auto;
@@ -30,17 +66,43 @@ div:hover {
 }
 
 
-
+/*
 canvas {
 	clear: both;
-	height: 500px ; 
-	width: auto;
+	height: 500px; 
+	width: 80%;
 	padding: 5px;
 	display: block;
+	box-sizing:border-box;
 	
 }
 .clear {
 	 
-	/*Con esto le obligamos al párrafo a no rodear la imagen */
+	Con esto le obligamos al párrafo a no rodear la imagen 
+}
+*/
+
+@media screen and (max-width: 800px) {
+	/*Esto nos permite que cuando el ancho de pantalla sea 
+	menor que 800px (Tablet)se ejecute el siguente estilo*/
+	.main{
+		width: 100%;
+	}
+	aside{
+		width: 100%;
+	}
 }
 
+@media screen and (max-width: 400px) {
+	/*Esto nos permite que cuando el ancho de pantalla sea 
+	menor que 400px (smarphone)se ejecute el siguente estilo*/
+	.contenedor{
+		width: 100%;
+	}
+	/*aside{
+		display: none; 	
+		Esto permite no mostrar el aside cuando el ancho de pantalla
+		es menor a 400px
+	}*/
+	
+}
