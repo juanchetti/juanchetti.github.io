@@ -55,11 +55,13 @@ var SnakeGame = function(con){
     console.log(this.tablero.yMax);
     console.log(this.tablero.xMin);
 
-    this.longitude = 50;
+    this.longitude = 10;
     this.ancho = 10;
     this.paso = 10;
     this.vivo = true;
     this.haComido = false;
+    this.estomago = 100; //pongo un limite de movimientos sin comer 
+    this.score = 0;
     this.cabezaX = 100;
     this.cabezaY = 100;
     this.colaX = this.cabezaX - this.paso; 
@@ -80,6 +82,16 @@ var SnakeGame = function(con){
 SnakeGame.prototype.drawSnakeGame = function()
 {
     
+    this.score += 1;    //suma puntos por movimiento
+
+    this.estomago -= 1; //va consumiendo su energia 
+    if (this.estomago == 0) {
+        alert("PERDISTE, TE HAS MUERTO POR NO COMER");
+        this.vivo = false;
+        clearInterval(nIntervID);
+        // stopGame();
+    }
+
 
     // Pregunto si la serpiente ha tocado los limites del tablero de juego
     if (this.cabezaX < xMin + this.anchoMarco || 
@@ -99,8 +111,13 @@ SnakeGame.prototype.drawSnakeGame = function()
         {
             console.log("comio!!!!!")
             this.haComido = true;
+            this.estomago = 100; 
+            this.score += 100; // suma punto por mantenerce con vida
             clearInterval(nIntervID);
-            velocidad = velocidad - 100;
+            if (velocidad >= 100) //Limito la la maxima velocidad de la serpiente
+                {
+                velocidad = velocidad - 50;
+                }
             console.log(velocidad);
             nIntervID = setInterval("body.drawSnakeGame()", velocidad);
         }
@@ -110,21 +127,33 @@ SnakeGame.prototype.drawSnakeGame = function()
         {
             this.cabezaY -= this.paso; 
             this.colaY -= this.paso;
+
+            this.colaX = this.cabezaX;
+            this.colaY = this.cabezaY + this.paso; 
         }
         if (direction == key.DOWN) 
         {
             this.cabezaY += this.paso; 
             this.colaY += this.paso;
+
+            this.colaX = this.cabezaX;
+            this.colaY = this.cabezaY - this.paso; 
         }
         if (direction == key.RIGHT) 
         {
             this.cabezaX += this.paso; 
             this.colaX += this.paso;
+
+            this.colaX = this.cabezaX - this.paso; 
+            this.colaY = this.cabezaY;
         }
         if (direction == key.LEFT) 
         {
             this.cabezaX -= this.paso; 
             this.colaX -= this.paso;
+
+            this.colaX = this.cabezaX + this.paso; 
+            this.colaY = this.cabezaY;
         }
         //body.drawSnakeGame(this.cabezaX,this.cabezaY,this.longitude);
     } 
@@ -134,11 +163,13 @@ SnakeGame.prototype.drawSnakeGame = function()
     draw = this.context;
         
     // dibujando un recuadro
-    draw.fillRect(0,0,xMax,yMax);
-    draw.clearRect(this.anchoMarco,this.anchoMarco,xMax - 2*this.anchoMarco,yMax - 2*this.anchoMarco); 
-
+    // draw.fillRect(0,0,xMax,yMax);
+    // draw.clearRect(this.anchoMarco,this.anchoMarco,xMax - 2*this.anchoMarco,yMax - 2*this.anchoMarco); 
     //draw.strokeRect(0,0,50,50);
 
+    //borro el camvas para refrescar la pantala
+    draw.clearRect(this.anchoMarco,this.anchoMarco,xMax,yMax); 
+    
     // drawSnake = function()
     // {
     //     contador();
@@ -151,67 +182,67 @@ SnakeGame.prototype.drawSnakeGame = function()
     //     draw.closePath();
     // }
 
-    //Dibujando la serpiente
-    if (direction == key.UP)
-    {
-        this.colaX = this.cabezaX;
-        this.colaY = this.cabezaY + this.paso; 
-        // dibujo serpiente moviendose hacia ARRIBA
-        // draw.beginPath();
-        // draw.moveTo(this.cabezaX,this.cabezaY);//cabeza de serpiente
-        // draw.lineTo(this.colaX,this.colaY);//cola de serpiente
-        // draw.lineWidth = this.ancho; 
-        // draw.strokeStyle = "#000";
-        // draw.stroke();
-        // draw.closePath();
-        //this.drawSnake();
-    }
-    if (direction == key.DOWN) 
-    {
-        this.colaX = this.cabezaX;
-        this.colaY = this.cabezaY - this.paso; 
-        // dibujo serpiente moviendose hacia ABAJO
-        // draw.beginPath();
-        // draw.moveTo(this.cabezaX,this.cabezaY);//cabeza de serpiente
-        // draw.lineTo(this.colaX,this.colaY);//cola de serpiente
-        // draw.lineWidth = this.ancho; 
-        // draw.strokeStyle = "#000";
-        // draw.stroke();
-        // draw.closePath();
-        //this.drawSnake();
-    }
-    if (direction == key.RIGHT) 
-    {          
-        // i += 1;
-        // console.log(i);
-        this.colaX = this.cabezaX - this.paso; 
-        this.colaY = this.cabezaY;
-        // dibujo serpiente moviendose hacia DERECHA
-        // draw.beginPath();
-        // draw.moveTo(this.cabezaX,this.cabezaY);//cabeza de serpiente
-        // draw.lineTo(this.colaX,this.colaY);//cola de serpiente
-        // draw.lineWidth = this.ancho; 
-        // draw.strokeStyle = "#000";
-        // draw.stroke();
-        // draw.closePath();
-        //this.drawSnake();
+    // // Dibujando la serpiente
+    // if (direction == key.UP)
+    // {
+    //     this.colaX = this.cabezaX;
+    //     this.colaY = this.cabezaY + this.paso; 
+    //     // dibujo serpiente moviendose hacia ARRIBA
+    //     // draw.beginPath();
+    //     // draw.moveTo(this.cabezaX,this.cabezaY);//cabeza de serpiente
+    //     // draw.lineTo(this.colaX,this.colaY);//cola de serpiente
+    //     // draw.lineWidth = this.ancho; 
+    //     // draw.strokeStyle = "#000";
+    //     // draw.stroke();
+    //     // draw.closePath();
+    //     //this.drawSnake();
+    // }
+    // if (direction == key.DOWN) 
+    // {
+    //     this.colaX = this.cabezaX;
+    //     this.colaY = this.cabezaY - this.paso; 
+    //     // dibujo serpiente moviendose hacia ABAJO
+    //     // draw.beginPath();
+    //     // draw.moveTo(this.cabezaX,this.cabezaY);//cabeza de serpiente
+    //     // draw.lineTo(this.colaX,this.colaY);//cola de serpiente
+    //     // draw.lineWidth = this.ancho; 
+    //     // draw.strokeStyle = "#000";
+    //     // draw.stroke();
+    //     // draw.closePath();
+    //     //this.drawSnake();
+    // }
+    // if (direction == key.RIGHT) 
+    // {          
+    //     // i += 1;
+    //     // console.log(i);
+    //     this.colaX = this.cabezaX - this.paso; 
+    //     this.colaY = this.cabezaY;
+    //     // dibujo serpiente moviendose hacia DERECHA
+    //     // draw.beginPath();
+    //     // draw.moveTo(this.cabezaX,this.cabezaY);//cabeza de serpiente
+    //     // draw.lineTo(this.colaX,this.colaY);//cola de serpiente
+    //     // draw.lineWidth = this.ancho; 
+    //     // draw.strokeStyle = "#000";
+    //     // draw.stroke();
+    //     // draw.closePath();
+    //     //this.drawSnake();
 
-    }
-    if (direction == key.LEFT) 
-    {
-        this.colaX = this.cabezaX + this.paso; 
-        this.colaY = this.cabezaY;
-        // dibujo serpiente moviendose hacia IZQUIERDA
-        // draw.beginPath();
-        // draw.moveTo(this.cabezaX,this.cabezaY);//cabeza de serpiente
-        // draw.lineTo(this.colaX,this.colaY);//cola de serpiente
-        // draw.lineWidth = this.ancho; 
-        // draw.strokeStyle = "#000";
-        // draw.stroke();
-        // draw.closePath();
-        //this.drawSnake();
+    // }
+    // if (direction == key.LEFT) 
+    // {
+    //     this.colaX = this.cabezaX + this.paso; 
+    //     this.colaY = this.cabezaY;
+    //     // dibujo serpiente moviendose hacia IZQUIERDA
+    //     // draw.beginPath();
+    //     // draw.moveTo(this.cabezaX,this.cabezaY);//cabeza de serpiente
+    //     // draw.lineTo(this.colaX,this.colaY);//cola de serpiente
+    //     // draw.lineWidth = this.ancho; 
+    //     // draw.strokeStyle = "#000";
+    //     // draw.stroke();
+    //     // draw.closePath();
+    //     //this.drawSnake();
         
-    }
+    // }
 
     this.drawSnake();
     this.drawComida();
