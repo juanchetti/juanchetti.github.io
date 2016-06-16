@@ -1,0 +1,71 @@
+<!DOCTIPE html>
+<html>
+<head>
+<meta chartset="utf-8" />
+<title>Objetos</title>
+<script type="text/javascript">
+
+/*
+var perro = {
+	agilidad: 50,
+	fuerza: 100,
+	limpieza: false,
+	longevidad: 14,
+	amor: true,
+	voz: function () { //asi semmwasxdcf8tgtvcdsfddsdz declarar una funcion dentro de un objeto
+		alert("guau");
+	}
+};
+perro.voz();
+*/
+
+// Pero si quisiera crear el objeto Gato, tendría que copiar y pegar y volver a crear el objeto y así para cada objeto que cree
+//entonces ahora vamos a ver como se crean objetos con prototype
+
+// Cuando creamos un Objeto MAESTRO del que se derivan otros objetos usamos la primera en mayúscula.
+// No se le llama Objeto MAESTRO 
+// se llama CLASE = Objeto Maestro del que se derivan otros objetos.
+// CLASE es la definicion del Objeto
+// por lo general se escriben con la primera en Mayúscula para identificarla como una CLASE
+
+var nombre = "Frisco";	//esta es una variable gloval 
+// Usar variables globales es una MALA PRACTICA.
+
+var Mascota = function(n,v) {	// declaró la CLASE Mascota
+	this.nombre = n; 			//aqui nombre solo vive dentro las {}
+	this.voz = v;
+	var TIPO = "animal";
+};
+
+Mascota.prototype.TIPO = "Animal";	// agrego un atributo CONSTANTE a la clase Mascota
+Mascota.SANGRE = "Fria";
+
+
+Mascota.prototype.hablar = function()
+{
+	alert(this.nombre + " dice: "+ this.voz);
+	// Gracias a prototype nos permite acceder a la clase y poder usas el this. fuera de sus{} 
+	// Es una manera de crear variables globales sin serlo. Ya que pueden ser llamadas por fuera de los objetos.
+}
+
+// prototype nos permite metemos en la construcción interna del la clase Mascota y le agregamos una función llamada hablar.
+// Entonces le estamos agregando un ATRIBUTO a cada objeto de la clase mascota que se creen, le agregamos el ATRIBUTO .hablar().
+// NOTA: Dentro de un Objeto o clases llamamos 	ATRIBUTO	a las variables.
+//												METODO		a las funciones.
+
+var perro = new Mascota ("roco","guau!"); 
+var gato = new Mascota ("misifu","miaw");
+// perro  y gato = Objetos de la clase Mascota
+
+perro.hablar();
+gato.hablar();
+
+// CONCLUCION:
+//Esta es la manera correcta de usar variables globales
+
+</script> 
+</head>
+<body>
+	<h1>Perros y Gatos</h1>
+</body>
+</html>

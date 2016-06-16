@@ -1,0 +1,97 @@
+index.html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Objetos en Javascript con Prototype</title>
+    <script type="text/javascript">
+    // Alumno en Platzi: Sergio Mendoza Gomez
+    // #soy mejorando.la#
+    // 10-03-2016
+
+    // Clase: Objeto maestro, del que se derivan otros objetos
+    // Clase: Definicion del Objeto
+    // Los objetos antes vistos, no eran objetos javascript, sino que eran objetos JSON
+    // Los objetos correctos son clases que se hacen con prototype
+
+    var nombre = "Frisco";// variable global que no tiene nada que ver con las propiedades y elementos en objetos JSON o Prototype
+    
+    // ***********************************************************************************
+    // Objeto con notacion JSON - Objeto JSON
+    var perroJson = {
+        agilidad: 50,
+        fuerza: 100,
+        limpieza: false,
+        longevidad: 14,
+        amor: true,
+
+        voz: function () {
+            alert("guau Funcion notacion JSON!");
+        }
+
+    };
+    
+
+    var gatoJson = {
+        agilidad: 50,
+        fuerza: 100,
+        limpieza: false,
+        longevidad: 14,
+        amor: true,
+
+        voz: function () {
+            alert("miau Funcion notacion JSON!");
+        }
+
+    };
+
+
+    perroJson.voz();
+    gatoJson.voz();    
+    // Objeto con notacion JSON - Objeto JSON
+
+
+    // ***********************************************************************************
+    // Clase u Objeto  en Javascript
+    // Buena practica iniciar nombres de Clases y Metodos con Mayusculas
+    var Mascota = function(n, v, t) {
+        this.nombre= n;
+        this.voz= v;
+        this.tipo = t;
+    }
+
+    Mascota.prototype.hablar = function(t) {
+        document.getElementById(t).innerHTML= this.tipo + ': ' + this.nombre + ' - ' + this.voz + ' desde prototype o metodo hablar de la clase Mascota';
+        //alert(this.voz);
+    }
+
+    // perro es un objeto de la clase Mascota
+    var perro = new Mascota("roco","Guau!","Perro");
+    var gato = new Mascota("wisk","Miau!","Gato");
+
+    // Clase u Objeto  en Javascript
+
+
+    </script>
+</head>
+<body>
+    <div>
+        
+        <h2 id="mgato"></h2><br/>
+        <h2 id="mperro"></h2><br/>
+        <h2 id="mgatoh"></h2><br/>
+        <h2 id="mperroh"></h2>
+    <div>
+    <script type="text/javascript">
+
+        // Se declaran al final ya que a partir de esta linea ya se crearon o renderizaron las etiquetas h2 que se usaron para desplegar los mensajes con id=mgato, id=mperro, id=mgatoh, id=mperroh
+        // Si se utilizara arriba marcaria error o bien no desplegaria nada
+        document.getElementById("mperro").innerHTML= 'Clase Mascota ' + perro.tipo + ': ' + perro.nombre + ' - ' + perro.voz;
+        document.getElementById("mgato").innerHTML= 'Clase Mascota ' + gato.tipo + ': ' + gato.nombre + ' - ' + gato.voz;
+
+        perro.hablar("mperroh");
+        gato.hablar("mgatoh");
+
+
+    </script>
+</body>
+</html>
